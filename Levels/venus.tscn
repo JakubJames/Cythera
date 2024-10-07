@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://jdgl104gneel"]
+
+[ext_resource type="PackedScene" uid="uid://cg8pt3b8gfll4" path="res://3DModels/Goblin/goblin.gltf" id="1_tgkdm"]
+
+[node name="Venus" type="Node3D"]
+
+[node name="Goblin" parent="." instance=ExtResource("1_tgkdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.648346, 0, 0.163723)
