@@ -3,7 +3,8 @@
 You can play it here: https://jakubjames.itch.io/cythera
 
 ## License credits:
- 
+
+Original Goblin - https://www.twitch.tv/generatorfrajdy/ <br />
  
 ## License
 

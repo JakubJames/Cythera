@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://jdgl104gneel"]
+[gd_scene load_steps=3 format=3 uid="uid://jdgl104gneel"]
 
 [ext_resource type="PackedScene" uid="uid://cg8pt3b8gfll4" path="res://3DModels/Goblin/goblin.gltf" id="1_tgkdm"]
+[ext_resource type="PackedScene" uid="uid://wom0p1o1cxqc" path="res://3DModels/Venus/Venus.gltf" id="2_t5ro1"]
 
 [node name="Venus" type="Node3D"]
 
 [node name="Goblin" parent="." instance=ExtResource("1_tgkdm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.648346, 0, 0.163723)
+transform = Transform3D(0.113203, 0, 0.993572, 0, 1, 0, -0.993572, 0, 0.113203, 19.0979, 0.0673603, 26.148)
+
+[node name="Venus" parent="." instance=ExtResource("2_t5ro1")]
