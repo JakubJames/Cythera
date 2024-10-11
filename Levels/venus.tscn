@@ -1,11 +1,76 @@
-[gd_scene load_steps=3 format=3 uid="uid://jdgl104gneel"]
+[gd_scene load_steps=12 format=3 uid="uid://jdgl104gneel"]
 
 [ext_resource type="PackedScene" uid="uid://cg8pt3b8gfll4" path="res://3DModels/Goblin/goblin.gltf" id="1_tgkdm"]
 [ext_resource type="PackedScene" uid="uid://wom0p1o1cxqc" path="res://3DModels/Venus/Venus.gltf" id="2_t5ro1"]
+[ext_resource type="Shader" path="res://Shaders and lights/VenusSky.gdshader" id="3_wx3l0"]
+[ext_resource type="Shader" path="res://Shaders and lights/VHSWiggle.gdshader" id="4_qg088"]
+[ext_resource type="Texture2D" uid="uid://b1srbrxvuavn" path="res://Shaders and lights/noise.png" id="5_hcwtb"]
+[ext_resource type="Script" path="res://Player/player.gd" id="6_4ja0r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nmk6k"]
+shader = ExtResource("3_wx3l0")
+shader_parameter/skyColor = Color(0.78, 0.58812, 0.1404, 1)
+shader_parameter/horizonColor = Color(0.16, 0.0336, 0.0546667, 1)
+
+[sub_resource type="Sky" id="Sky_81hsi"]
+sky_material = SubResource("ShaderMaterial_nmk6k")
+
+[sub_resource type="Environment" id="Environment_m02y1"]
+background_mode = 2
+sky = SubResource("Sky_81hsi")
+ambient_light_source = 3
+reflected_light_source = 2
+fog_light_color = Color(1, 0.841333, 0.32, 1)
+fog_density = 0.005
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_astkh"]
+shader = ExtResource("4_qg088")
+shader_parameter/vhs_resolution = Vector2(320, 240)
+shader_parameter/samples = 2
+shader_parameter/crease_noise = 1.0
+shader_parameter/crease_opacity = 0.5
+shader_parameter/filter_intensity = 0.1
+shader_parameter/tape_crease_smear = 0.2
+shader_parameter/tape_crease_intensity = 0.2
+shader_parameter/tape_crease_jitter = 0.0
+shader_parameter/tape_crease_speed = 0.2
+shader_parameter/tape_crease_discoloration = 1.0
+shader_parameter/bottom_border_thickness = 3.0
+shader_parameter/bottom_border_jitter = 3.0
+shader_parameter/noise_intensity = 0.3
+shader_parameter/noise_texture = ExtResource("5_hcwtb")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j8ll0"]
 
 [node name="Venus" type="Node3D"]
 
 [node name="Goblin" parent="." instance=ExtResource("1_tgkdm")]
-transform = Transform3D(0.113203, 0, 0.993572, 0, 1, 0, -0.993572, 0, 0.113203, 19.0979, 0.0673603, 26.148)
+transform = Transform3D(0.94925, 0, 0.314523, 0, 1, 0, -0.314523, 0, 0.94925, 23.007, 0.162768, 31.3067)
 
 [node name="Venus" parent="." instance=ExtResource("2_t5ro1")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m02y1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_astkh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.263, 0.45, 31.316)
+script = ExtResource("6_4ja0r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_j8ll0")
+
+[node name="Head" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.162856, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head"]
