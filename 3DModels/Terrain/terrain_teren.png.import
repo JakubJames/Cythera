@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfi3runhf80cp"
-path.s3tc="res://.godot/imported/Venus_0.png-6e0b54b546693437b42e254e0f4d0d2b.s3tc.ctex"
+uid="uid://8vjvhj8ue0b8"
+path.s3tc="res://.godot/imported/terrain_teren.png-19f29ef801b872ef1825cf46b9fb8b30.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "eaba5648b96bcb4b8eaf8397e2df40a3"
+"md5": "782eb01c978bb26c38497355ec92735d"
 }
 
 [deps]
 
-source_file="res://3DModels/Venus/Venus_0.png"
-dest_files=["res://.godot/imported/Venus_0.png-6e0b54b546693437b42e254e0f4d0d2b.s3tc.ctex"]
+source_file="res://3DModels/Terrain/terrain_teren.png"
+dest_files=["res://.godot/imported/terrain_teren.png-19f29ef801b872ef1825cf46b9fb8b30.s3tc.ctex"]
 
 [params]
 

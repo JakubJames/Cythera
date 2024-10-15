@@ -1,11 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://jdgl104gneel"]
 
-[ext_resource type="PackedScene" uid="uid://cg8pt3b8gfll4" path="res://3DModels/Goblin/goblin.gltf" id="1_tgkdm"]
 [ext_resource type="PackedScene" uid="uid://wom0p1o1cxqc" path="res://3DModels/Venus/Venus.gltf" id="2_t5ro1"]
 [ext_resource type="Shader" path="res://Shaders and lights/VenusSky.gdshader" id="3_wx3l0"]
+[ext_resource type="PackedScene" uid="uid://cv1c0rt1wtvnr" path="res://3DModels/Goblin/goblin.tscn" id="4_hlg26"]
 [ext_resource type="Shader" path="res://Shaders and lights/VHSWiggle.gdshader" id="4_qg088"]
 [ext_resource type="Texture2D" uid="uid://b1srbrxvuavn" path="res://Shaders and lights/noise.png" id="5_hcwtb"]
-[ext_resource type="Script" path="res://Player/player.gd" id="6_4ja0r"]
+[ext_resource type="PackedScene" uid="uid://c26oebmvg2v81" path="res://3DModels/Terrain/terrain.glb" id="7_3wda3"]
+[ext_resource type="PackedScene" uid="uid://dnguhkhrnjayj" path="res://Player/player.tscn" id="7_xfjtm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nmk6k"]
 shader = ExtResource("3_wx3l0")
@@ -40,21 +41,16 @@ shader_parameter/bottom_border_jitter = 3.0
 shader_parameter/noise_intensity = 0.3
 shader_parameter/noise_texture = ExtResource("5_hcwtb")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j8ll0"]
-
 [node name="Venus" type="Node3D"]
 
-[node name="Goblin" parent="." instance=ExtResource("1_tgkdm")]
-transform = Transform3D(0.94925, 0, 0.314523, 0, 1, 0, -0.314523, 0, 0.94925, 23.007, 0.162768, 31.3067)
+[node name="Environment" type="Node3D" parent="."]
 
-[node name="Venus" parent="." instance=ExtResource("2_t5ro1")]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_m02y1")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="VHSEffect" type="CanvasLayer" parent="Environment"]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Environment/VHSEffect"]
 material = SubResource("ShaderMaterial_astkh")
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,15 +58,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.263, 0.45, 31.316)
-script = ExtResource("6_4ja0r")
+[node name="Goblin" parent="." instance=ExtResource("4_hlg26")]
+transform = Transform3D(0.94925, 0, 0.314523, 0, 1, 0, -0.314523, 0, 0.94925, 23.007, 0.515072, 30.5865)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_j8ll0")
+[node name="Player" parent="." instance=ExtResource("7_xfjtm")]
+transform = Transform3D(0.966864, 0, -0.255294, 0, 1, 0, 0.255294, 0, 0.966864, 7.258, 0.8, 32.005)
 
-[node name="Head" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.162856, 0)
+[node name="terrain" parent="." instance=ExtResource("7_3wda3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3313, -1, 32.4428)
 
-[node name="Camera3D" type="Camera3D" parent="Player/Head"]
+[node name="Venus" parent="." instance=ExtResource("2_t5ro1")]
