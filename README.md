@@ -5,6 +5,7 @@ You can play it here: https://jakubjames.itch.io/cythera
 ## License credits:
 
 Original Goblin - https://www.twitch.tv/generatorfrajdy/ <br />
+Cockpit - https://sketchfab.com/3d-models/new-futuristic-combat-jet-cockpit-wip-1-cfd497076a514a458c248bfb7f4fd5b2 <br />
  
 ## License
 

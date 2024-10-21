@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var speed: float = 2.0
 @export var mouse_sens: float = 0.05
+@export var cutscene: bool = false
 
 
 func _ready() -> void:
@@ -14,14 +15,16 @@ func _physics_process(delta: float) -> void:
 		get_tree().quit()
 	
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and !cutscene:
 		velocity += get_gravity() * delta
+	else:
+		velocity += get_gravity() * 0 * delta
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+	if direction and !cutscene:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 	else:

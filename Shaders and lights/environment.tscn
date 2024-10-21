@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cursnbqyj8fdw"]
+
+[ext_resource type="Shader" path="res://Shaders and lights/VenusSky.gdshader" id="1_4x423"]
+[ext_resource type="Shader" path="res://Shaders and lights/VHSWiggle.gdshader" id="2_83010"]
+[ext_resource type="Texture2D" uid="uid://b1srbrxvuavn" path="res://Shaders and lights/noise.png" id="3_q3iu5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nmk6k"]
+shader = ExtResource("1_4x423")
+shader_parameter/skyColor = Color(0.78, 0.58812, 0.1404, 1)
+shader_parameter/horizonColor = Color(0.16, 0.0336, 0.0546667, 1)
+
+[sub_resource type="Sky" id="Sky_81hsi"]
+sky_material = SubResource("ShaderMaterial_nmk6k")
+
+[sub_resource type="Environment" id="Environment_m02y1"]
+background_mode = 2
+sky = SubResource("Sky_81hsi")
+ambient_light_source = 3
+reflected_light_source = 2
+fog_enabled = true
+fog_light_color = Color(0.780392, 0.588235, 0.141176, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_astkh"]
+shader = ExtResource("2_83010")
+shader_parameter/vhs_resolution = Vector2(320, 240)
+shader_parameter/samples = 2
+shader_parameter/crease_noise = 1.0
+shader_parameter/crease_opacity = 0.5
+shader_parameter/filter_intensity = 0.1
+shader_parameter/tape_crease_smear = 0.2
+shader_parameter/tape_crease_intensity = 0.2
+shader_parameter/tape_crease_jitter = 0.0
+shader_parameter/tape_crease_speed = 0.2
+shader_parameter/tape_crease_discoloration = 1.0
+shader_parameter/bottom_border_thickness = 3.0
+shader_parameter/bottom_border_jitter = 3.0
+shader_parameter/noise_intensity = 0.3
+shader_parameter/noise_texture = ExtResource("3_q3iu5")
+
+[node name="Environment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m02y1")
+
+[node name="VHSEffect" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="VHSEffect"]
+material = SubResource("ShaderMaterial_astkh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

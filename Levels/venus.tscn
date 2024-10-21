@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://jdgl104gneel"]
+[gd_scene load_steps=13 format=3 uid="uid://jdgl104gneel"]
 
 [ext_resource type="PackedScene" uid="uid://wom0p1o1cxqc" path="res://3DModels/Venus/Venus.gltf" id="2_t5ro1"]
 [ext_resource type="Shader" path="res://Shaders and lights/VenusSky.gdshader" id="3_wx3l0"]
 [ext_resource type="PackedScene" uid="uid://cv1c0rt1wtvnr" path="res://3DModels/Goblin/goblin.tscn" id="4_hlg26"]
 [ext_resource type="Shader" path="res://Shaders and lights/VHSWiggle.gdshader" id="4_qg088"]
 [ext_resource type="Texture2D" uid="uid://b1srbrxvuavn" path="res://Shaders and lights/noise.png" id="5_hcwtb"]
+[ext_resource type="PackedScene" uid="uid://cu5dua1p4xh17" path="res://3DModels/Spaceship/spaceship.glb" id="6_cumil"]
 [ext_resource type="PackedScene" uid="uid://c26oebmvg2v81" path="res://3DModels/Terrain/terrain.glb" id="7_3wda3"]
 [ext_resource type="PackedScene" uid="uid://dnguhkhrnjayj" path="res://Player/player.tscn" id="7_xfjtm"]
 
@@ -16,13 +17,24 @@ shader_parameter/horizonColor = Color(0.16, 0.0336, 0.0546667, 1)
 [sub_resource type="Sky" id="Sky_81hsi"]
 sky_material = SubResource("ShaderMaterial_nmk6k")
 
-[sub_resource type="Environment" id="Environment_m02y1"]
+[sub_resource type="Environment" id="Environment_e0jja"]
 background_mode = 2
 sky = SubResource("Sky_81hsi")
 ambient_light_source = 3
 reflected_light_source = 2
-fog_light_color = Color(1, 0.841333, 0.32, 1)
-fog_density = 0.005
+fog_light_color = Color(0.780392, 0.588235, 0.141176, 1)
+fog_light_energy = 0.5
+fog_density = 0.05
+fog_aerial_perspective = 0.12
+fog_sky_affect = 0.68
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0.834614, 0.834614, 0.834614, 1)
+volumetric_fog_emission = Color(0.780392, 0.588235, 0.141176, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_anisotropy = 0.9
+volumetric_fog_length = 30.0
+volumetric_fog_sky_affect = 0.8
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_astkh"]
 shader = ExtResource("4_qg088")
@@ -46,7 +58,7 @@ shader_parameter/noise_texture = ExtResource("5_hcwtb")
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_m02y1")
+environment = SubResource("Environment_e0jja")
 
 [node name="VHSEffect" type="CanvasLayer" parent="Environment"]
 
@@ -62,9 +74,17 @@ grow_vertical = 2
 transform = Transform3D(0.94925, 0, 0.314523, 0, 1, 0, -0.314523, 0, 0.94925, 23.007, 0.515072, 30.5865)
 
 [node name="Player" parent="." instance=ExtResource("7_xfjtm")]
-transform = Transform3D(0.966864, 0, -0.255294, 0, 1, 0, 0.255294, 0, 0.966864, 7.258, 0.8, 32.005)
+transform = Transform3D(0.591028, 0, -0.806652, 0, 1, 0, 0.806652, 0, 0.591028, 4.30715, 0.8, 31.9599)
+mouse_sens = 0.15
 
 [node name="terrain" parent="." instance=ExtResource("7_3wda3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3313, -1, 32.4428)
 
+[node name="terrain2" parent="." instance=ExtResource("7_3wda3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27.9214, -2.24512, 32.4428)
+
 [node name="Venus" parent="." instance=ExtResource("2_t5ro1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.122981, 0)
+
+[node name="spaceship" parent="." instance=ExtResource("6_cumil")]
+transform = Transform3D(0.654177, -0.191648, 0.731658, -0.110914, 0.932598, 0.343451, -0.748164, -0.305829, 0.588828, 5.86758, 0.390993, 31.7722)

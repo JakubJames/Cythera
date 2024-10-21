@@ -1,9 +1,7 @@
 // https://www.shadertoy.com/view/MdffD7
 // Fork of FMS_Cat's VCR distortion shader
-
+//https://godotshaders.com/shader/vhs-post-processing/
 shader_type canvas_item;
-
-// TODO: Add uniforms for tape crease discoloration and image jiggle
 
 uniform sampler2D screen_texture: hint_screen_texture, filter_linear_mipmap, repeat_disable;
 
