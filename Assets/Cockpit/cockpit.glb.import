@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c26oebmvg2v81"
-path="res://.godot/imported/terrain.glb-c589ab6364a4f06a6e06ff7c4ad23d0d.scn"
+uid="uid://dbr3wovocrjer"
+path="res://.godot/imported/cockpit.glb-80d0d20f0b1895bcade525e2f0a57191.scn"
 
 [deps]
 
-source_file="res://3DModels/Terrain/terrain.glb"
-dest_files=["res://.godot/imported/terrain.glb-c589ab6364a4f06a6e06ff7c4ad23d0d.scn"]
+source_file="res://Assets/Cockpit/cockpit.glb"
+dest_files=["res://.godot/imported/cockpit.glb-80d0d20f0b1895bcade525e2f0a57191.scn"]
 
 [params]
 

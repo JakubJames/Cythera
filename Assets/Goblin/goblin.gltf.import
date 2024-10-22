@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://wom0p1o1cxqc"
-path="res://.godot/imported/Venus.gltf-0184dbee7113e1a92977060f3d73155a.scn"
+uid="uid://cg8pt3b8gfll4"
+path="res://.godot/imported/goblin.gltf-68c04f505f0bae7cb44461ea11d56be8.scn"
 
 [deps]
 
-source_file="res://3DModels/Venus/Venus.gltf"
-dest_files=["res://.godot/imported/Venus.gltf-0184dbee7113e1a92977060f3d73155a.scn"]
+source_file="res://Assets/Goblin/goblin.gltf"
+dest_files=["res://.godot/imported/goblin.gltf-68c04f505f0bae7cb44461ea11d56be8.scn"]
 
 [params]
 

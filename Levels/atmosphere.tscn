@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfg3m1ix4d7jp"]
+[gd_scene load_steps=21 format=3 uid="uid://dfg3m1ix4d7jp"]
 
-[ext_resource type="PackedScene" uid="uid://c26oebmvg2v81" path="res://3DModels/Terrain/terrain.glb" id="1_dp1ih"]
+[ext_resource type="PackedScene" uid="uid://c26oebmvg2v81" path="res://Assets/Terrain/terrain.glb" id="1_dp1ih"]
 [ext_resource type="Shader" path="res://Shaders and lights/VenusSky.gdshader" id="2_r4krs"]
-[ext_resource type="PackedScene" uid="uid://dnguhkhrnjayj" path="res://Player/player.tscn" id="3_3nwjy"]
+[ext_resource type="PackedScene" uid="uid://dnguhkhrnjayj" path="res://Assets/Player/player.tscn" id="3_3nwjy"]
 [ext_resource type="Shader" path="res://Shaders and lights/VHSWiggle.gdshader" id="3_idcm5"]
 [ext_resource type="Texture2D" uid="uid://b1srbrxvuavn" path="res://Shaders and lights/noise.png" id="4_ragqh"]
-[ext_resource type="PackedScene" uid="uid://cg8pt3b8gfll4" path="res://3DModels/Goblin/goblin.gltf" id="6_8np2u"]
-[ext_resource type="PackedScene" uid="uid://dbr3wovocrjer" path="res://3DModels/Cockpit/cockpit.glb" id="7_pkrdm"]
+[ext_resource type="Script" path="res://Assets/Cockpit/crash_intro.gd" id="7_6dprv"]
+[ext_resource type="PackedScene" uid="uid://dbr3wovocrjer" path="res://Assets/Cockpit/cockpit.glb" id="7_pkrdm"]
+[ext_resource type="AudioStream" uid="uid://baefimya75fsi" path="res://Music and SFX/735559__logicogonist__crash-basic-1950-1b.wav" id="8_ctyrj"]
+[ext_resource type="AudioStream" uid="uid://b6b726elp6rpl" path="res://Music and SFX/65401__guitarguy1985__ekg.mp3" id="9_ym7fn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nmk6k"]
 shader = ExtResource("2_r4krs")
@@ -21,12 +23,11 @@ background_mode = 2
 sky = SubResource("Sky_81hsi")
 ambient_light_source = 3
 reflected_light_source = 2
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.780392, 0.588235, 0.141176, 1)
 fog_density = 0.6
 fog_depth_curve = 3.73212
-volumetric_fog_density = 0.01
+volumetric_fog_enabled = true
 volumetric_fog_emission = Color(0.780392, 0.588235, 0.141176, 1)
 volumetric_fog_emission_energy = 0.5
 volumetric_fog_anisotropy = 0.9
@@ -51,9 +52,205 @@ shader_parameter/bottom_border_jitter = 3.0
 shader_parameter/noise_intensity = 0.3
 shader_parameter/noise_texture = ExtResource("4_ragqh")
 
-[node name="atmosphere" type="Node3D"]
+[sub_resource type="Animation" id="Animation_ylgom"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 99.1, 0.905)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.279479, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.750885, 0.0741825)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Environment/ColorRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer/FlatlineSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationPlayer/CrashSound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[node name="terrain" parent="." instance=ExtResource("1_dp1ih")]
+[sub_resource type="Animation" id="Animation_n8ieh"]
+resource_name = "spaceship"
+length = 7.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 100, 0), Vector3(0, 5, 200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.279479, 0, 0), Vector3(0.20944, 0, 0), Vector3(0.296706, 0, 0), Vector3(0.811788, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8, 1.2, 1.4, 1.5, 1.7, 1.8, 1.9, 2, 2.3, 2.4, 2.5, 2.6, 3.1, 3.2, 3.3, 3.4, 3.6, 3.7, 3.8, 3.9, 4.2, 4.3, 4.4, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08), Vector3(0, -3.14159, 0), Vector3(0.077353, -3.14159, 1.17033e-08)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.773621, 0.973621, 1.37362, 1.52356, 1.72356, 1.92356, 2.12356, 2.30508, 2.50508, 3.0708, 3.2708, 3.4708, 3.6708, 3.78917, 3.98917, 4.18917, 4.38917, 4.57857, 4.77857, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Environment/ColorRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer/FlatlineSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.01, 5.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationPlayer/CrashSound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ksu1m"]
+_data = {
+"RESET": SubResource("Animation_ylgom"),
+"spaceship": SubResource("Animation_n8ieh")
+}
+
+[sub_resource type="Gradient" id="Gradient_2b7au"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6letb"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_m2hl2"]
+color_ramp = SubResource("Gradient_2b7au")
+noise = SubResource("FastNoiseLite_6letb")
+
+[sub_resource type="FogMaterial" id="FogMaterial_uukcb"]
+density = 7.0
+emission = Color(0.61, 0, 0.0305001, 1)
+edge_fade = 0.18025
+density_texture = SubResource("NoiseTexture3D_m2hl2")
+
+[node name="Atmosphere" type="Node3D"]
+
+[node name="Terrain" parent="." instance=ExtResource("1_dp1ih")]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 2000)
 metadata/_edit_lock_ = true
 
@@ -61,6 +258,15 @@ metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_3crpw")
+
+[node name="ColorRect" type="ColorRect" parent="Environment"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 
 [node name="VHSEffect" type="CanvasLayer" parent="Environment"]
 
@@ -72,13 +278,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="cockpit" parent="." instance=ExtResource("7_pkrdm")]
-transform = Transform3D(1, 0, 0, 0, 0.961199, -0.275855, 0, 0.275855, 0.961199, 0, 100, 0)
+[node name="Cockpit" parent="." instance=ExtResource("7_pkrdm")]
+transform = Transform3D(1, 0, 0, 0, 0.961199, -0.275855, 0, 0.275855, 0.961199, 0, 99.1, 0.905)
 
-[node name="Player" parent="cockpit" instance=ExtResource("3_3nwjy")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, -0.33)
+[node name="Player" parent="Cockpit" instance=ExtResource("3_3nwjy")]
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.750885, 0.0741825)
 mouse_sens = 0.15
 cutscene = true
 
-[node name="Goblin" parent="." instance=ExtResource("6_8np2u")]
-transform = Transform3D(0.545268, 0, -0.838262, 0, 1, 0, 0.838262, 0, 0.545268, 3.10824, 100.271, 0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cockpit"]
+libraries = {
+"": SubResource("AnimationLibrary_ksu1m")
+}
+speed_scale = 0.9
+script = ExtResource("7_6dprv")
+
+[node name="CrashSound" type="AudioStreamPlayer" parent="Cockpit/AnimationPlayer"]
+stream = ExtResource("8_ctyrj")
+
+[node name="FlatlineSound" type="AudioStreamPlayer" parent="Cockpit/AnimationPlayer"]
+stream = ExtResource("9_ym7fn")
+volume_db = -25.0
+
+[node name="FogVolume" type="FogVolume" parent="Cockpit"]
+transform = Transform3D(0.829038, 0.559193, 0, -0.559193, 0.82904, 0, 1.49012e-08, -7.45058e-08, 1, 0.746105, 1.83047, 3.94194)
+size = Vector3(1.10059, 2.75967, 0.749146)
+material = SubResource("FogMaterial_uukcb")

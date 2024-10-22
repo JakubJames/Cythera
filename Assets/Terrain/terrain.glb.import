@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cg8pt3b8gfll4"
-path="res://.godot/imported/goblin.gltf-8ddf0d5c4144226de266f657091f0185.scn"
+uid="uid://c26oebmvg2v81"
+path="res://.godot/imported/terrain.glb-508e703baf0d7773c5e30bd9e85e02be.scn"
 
 [deps]
 
-source_file="res://3DModels/Goblin/goblin.gltf"
-dest_files=["res://.godot/imported/goblin.gltf-8ddf0d5c4144226de266f657091f0185.scn"]
+source_file="res://Assets/Terrain/terrain.glb"
+dest_files=["res://.godot/imported/terrain.glb-508e703baf0d7773c5e30bd9e85e02be.scn"]
 
 [params]
 

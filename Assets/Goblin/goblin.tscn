@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://cv1c0rt1wtvnr"]
 
-[ext_resource type="PackedScene" uid="uid://cg8pt3b8gfll4" path="res://3DModels/Goblin/goblin.gltf" id="1_b7k5t"]
+[ext_resource type="PackedScene" uid="uid://cg8pt3b8gfll4" path="res://Assets/Goblin/goblin.gltf" id="1_b7k5t"]
 
 [node name="Goblin" instance=ExtResource("1_b7k5t")]

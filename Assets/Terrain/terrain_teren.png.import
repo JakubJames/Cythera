@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b85oyw8kay6eh"
-path.s3tc="res://.godot/imported/goblin_1.png-9e1233c141b668e90ce5307a602321af.s3tc.ctex"
+uid="uid://8vjvhj8ue0b8"
+path.s3tc="res://.godot/imported/terrain_teren.png-89d88c1ad29cc7ffda22c0bd66489c79.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "e25eafa5d1e71996fd5bdb0b01f59c6f"
+"md5": "782eb01c978bb26c38497355ec92735d"
 }
 
 [deps]
 
-source_file="res://3DModels/Goblin/goblin_1.png"
-dest_files=["res://.godot/imported/goblin_1.png-9e1233c141b668e90ce5307a602321af.s3tc.ctex"]
+source_file="res://Assets/Terrain/terrain_teren.png"
+dest_files=["res://.godot/imported/terrain_teren.png-89d88c1ad29cc7ffda22c0bd66489c79.s3tc.ctex"]
 
 [params]
 

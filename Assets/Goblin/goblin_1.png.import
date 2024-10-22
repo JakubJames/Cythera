@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dklwvgv2644tv"
-path.s3tc="res://.godot/imported/Venus_1.png-84dcc2a0fea717209f904c0e1c7e9147.s3tc.ctex"
+uid="uid://b85oyw8kay6eh"
+path.s3tc="res://.godot/imported/goblin_1.png-812d1b47f8b4bf233a42036b44804d8c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "2345eb5f6f3cc390eb8cb73d6d7cb9d2"
+"md5": "e25eafa5d1e71996fd5bdb0b01f59c6f"
 }
 
 [deps]
 
-source_file="res://3DModels/Venus/Venus_1.png"
-dest_files=["res://.godot/imported/Venus_1.png-84dcc2a0fea717209f904c0e1c7e9147.s3tc.ctex"]
+source_file="res://Assets/Goblin/goblin_1.png"
+dest_files=["res://.godot/imported/goblin_1.png-812d1b47f8b4bf233a42036b44804d8c.s3tc.ctex"]
 
 [params]
 

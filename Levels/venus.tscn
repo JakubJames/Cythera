@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://jdgl104gneel"]
+[gd_scene load_steps=14 format=3 uid="uid://jdgl104gneel"]
 
-[ext_resource type="PackedScene" uid="uid://wom0p1o1cxqc" path="res://3DModels/Venus/Venus.gltf" id="2_t5ro1"]
+[ext_resource type="PackedScene" uid="uid://wom0p1o1cxqc" path="res://Assets/Venus/Venus.gltf" id="2_t5ro1"]
 [ext_resource type="Shader" path="res://Shaders and lights/VenusSky.gdshader" id="3_wx3l0"]
-[ext_resource type="PackedScene" uid="uid://cv1c0rt1wtvnr" path="res://3DModels/Goblin/goblin.tscn" id="4_hlg26"]
+[ext_resource type="AudioStream" uid="uid://douyfihweg521" path="res://Music and SFX/76808__dj-burnham__jules-musical-saw.mp3" id="4_ag762"]
+[ext_resource type="PackedScene" uid="uid://cv1c0rt1wtvnr" path="res://Assets/Goblin/goblin.tscn" id="4_hlg26"]
 [ext_resource type="Shader" path="res://Shaders and lights/VHSWiggle.gdshader" id="4_qg088"]
 [ext_resource type="Texture2D" uid="uid://b1srbrxvuavn" path="res://Shaders and lights/noise.png" id="5_hcwtb"]
-[ext_resource type="PackedScene" uid="uid://cu5dua1p4xh17" path="res://3DModels/Spaceship/spaceship.glb" id="6_cumil"]
-[ext_resource type="PackedScene" uid="uid://c26oebmvg2v81" path="res://3DModels/Terrain/terrain.glb" id="7_3wda3"]
-[ext_resource type="PackedScene" uid="uid://dnguhkhrnjayj" path="res://Player/player.tscn" id="7_xfjtm"]
+[ext_resource type="PackedScene" uid="uid://cu5dua1p4xh17" path="res://Assets/Spaceship/spaceship.glb" id="6_cumil"]
+[ext_resource type="PackedScene" uid="uid://c26oebmvg2v81" path="res://Assets/Terrain/terrain.glb" id="7_3wda3"]
+[ext_resource type="PackedScene" uid="uid://dnguhkhrnjayj" path="res://Assets/Player/player.tscn" id="7_xfjtm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nmk6k"]
 shader = ExtResource("3_wx3l0")
@@ -70,11 +71,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Ambient Music" type="AudioStreamPlayer" parent="Environment"]
+stream = ExtResource("4_ag762")
+volume_db = -15.0
+autoplay = true
+
 [node name="Goblin" parent="." instance=ExtResource("4_hlg26")]
 transform = Transform3D(0.94925, 0, 0.314523, 0, 1, 0, -0.314523, 0, 0.94925, 23.007, 0.515072, 30.5865)
 
 [node name="Player" parent="." instance=ExtResource("7_xfjtm")]
-transform = Transform3D(0.591028, 0, -0.806652, 0, 1, 0, 0.806652, 0, 0.591028, 4.30715, 0.8, 31.9599)
+transform = Transform3D(0.591028, 0, -0.806652, 0, 1, 0, 0.806652, 0, 0.591028, 4.307, 0.7, 31.96)
 mouse_sens = 0.15
 
 [node name="terrain" parent="." instance=ExtResource("7_3wda3")]

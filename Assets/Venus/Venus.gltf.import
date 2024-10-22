@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dbr3wovocrjer"
-path="res://.godot/imported/cockpit.glb-6fdf5693e52ee2f56855abc769d85376.scn"
+uid="uid://wom0p1o1cxqc"
+path="res://.godot/imported/Venus.gltf-c9b66501b5ce9dc96753f393cac88aa3.scn"
 
 [deps]
 
-source_file="res://3DModels/Cockpit/cockpit.glb"
-dest_files=["res://.godot/imported/cockpit.glb-6fdf5693e52ee2f56855abc769d85376.scn"]
+source_file="res://Assets/Venus/Venus.gltf"
+dest_files=["res://.godot/imported/Venus.gltf-c9b66501b5ce9dc96753f393cac88aa3.scn"]
 
 [params]
 
