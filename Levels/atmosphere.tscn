@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfg3m1ix4d7jp"]
+[gd_scene load_steps=22 format=3 uid="uid://dfg3m1ix4d7jp"]
 
 [ext_resource type="PackedScene" uid="uid://c26oebmvg2v81" path="res://Assets/Terrain/terrain.glb" id="1_dp1ih"]
 [ext_resource type="Shader" path="res://Shaders and lights/VenusSky.gdshader" id="2_r4krs"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dbr3wovocrjer" path="res://Assets/Cockpit/cockpit.glb" id="7_pkrdm"]
 [ext_resource type="AudioStream" uid="uid://baefimya75fsi" path="res://Music and SFX/735559__logicogonist__crash-basic-1950-1b.wav" id="8_ctyrj"]
 [ext_resource type="AudioStream" uid="uid://b6b726elp6rpl" path="res://Music and SFX/65401__guitarguy1985__ekg.mp3" id="9_ym7fn"]
+[ext_resource type="PackedScene" uid="uid://cv1c0rt1wtvnr" path="res://Assets/Goblin/goblin.tscn" id="10_f7u2o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nmk6k"]
 shader = ExtResource("2_r4krs")
@@ -105,7 +106,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Environment/ColorRect:visible")
+tracks/4/path = NodePath("../Environment/UIAndEffects/CrashBlack:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -153,7 +154,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 100, 0), Vector3(0, 5, 200)]
+"values": [Vector3(0, 100, 0), Vector3(0, 2, 200)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -189,12 +190,12 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.773621, 0.973621, 1.37362, 1.52356, 1.72356, 1.92356, 2.12356, 2.30508, 2.50508, 3.0708, 3.2708, 3.4708, 3.6708, 3.78917, 3.98917, 4.18917, 4.38917, 4.57857, 4.77857, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825)]
+"values": [Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.776, 0.08), Vector3(0, 0.750885, 0.0741825), Vector3(0, 0.723412, 0.0803776), Vector3(0, 0.75, 0.074)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Environment/ColorRect:visible")
+tracks/4/path = NodePath("../Environment/UIAndEffects/CrashBlack:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -238,7 +239,7 @@ _data = {
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6letb"]
 
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_m2hl2"]
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_4fjjh"]
 color_ramp = SubResource("Gradient_2b7au")
 noise = SubResource("FastNoiseLite_6letb")
 
@@ -246,7 +247,7 @@ noise = SubResource("FastNoiseLite_6letb")
 density = 7.0
 emission = Color(0.61, 0, 0.0305001, 1)
 edge_fade = 0.18025
-density_texture = SubResource("NoiseTexture3D_m2hl2")
+density_texture = SubResource("NoiseTexture3D_4fjjh")
 
 [node name="Atmosphere" type="Node3D"]
 
@@ -259,7 +260,9 @@ metadata/_edit_lock_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_3crpw")
 
-[node name="ColorRect" type="ColorRect" parent="Environment"]
+[node name="UIAndEffects" type="CanvasLayer" parent="Environment"]
+
+[node name="CrashBlack" type="ColorRect" parent="Environment/UIAndEffects"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -268,9 +271,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 
-[node name="VHSEffect" type="CanvasLayer" parent="Environment"]
-
-[node name="ColorRect" type="ColorRect" parent="Environment/VHSEffect"]
+[node name="VHS" type="ColorRect" parent="Environment/UIAndEffects"]
 material = SubResource("ShaderMaterial_astkh")
 anchors_preset = 15
 anchor_right = 1.0
@@ -304,3 +305,6 @@ volume_db = -25.0
 transform = Transform3D(0.829038, 0.559193, 0, -0.559193, 0.82904, 0, 1.49012e-08, -7.45058e-08, 1, 0.746105, 1.83047, 3.94194)
 size = Vector3(1.10059, 2.75967, 0.749146)
 material = SubResource("FogMaterial_uukcb")
+
+[node name="Goblin" parent="." instance=ExtResource("10_f7u2o")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 205.057)

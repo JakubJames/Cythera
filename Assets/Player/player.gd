@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal go_away()
 
 @export var speed: float = 2.0
 @export var mouse_sens: float = 0.05
@@ -11,9 +12,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("exit"):
-		get_tree().quit()
-	
 	# Add the gravity.
 	if not is_on_floor() and !cutscene:
 		velocity += get_gravity() * delta
@@ -32,6 +30,11 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
+	for index in get_slide_collision_count():
+		var collision := get_slide_collision(index)
+		var body := collision.get_collider()
+		if body.name.begins_with('InvisibleWall'):
+			go_away.emit()
 
 
 func _input(event):
